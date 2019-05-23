@@ -47,7 +47,7 @@ RSpec.describe 'Users API', type: :request do
       end
 
       it "return json data for the created user" do
-        user_response = JSON.parse(response.body)
+        user_response = JSON.parse(response.body, symbolize_names: true)
         expect(user_response['email']).to eql(user_params[:email])
       end
     end
