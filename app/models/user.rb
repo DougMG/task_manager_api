@@ -5,7 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :auth_token, uniqueness: true
-
+  before_create :generate_authentication_token!
+  
   def info
     "#{email} - #{created_at} - Token: #{Devise.friendly_token}"
   end
@@ -13,7 +14,7 @@ class User < ApplicationRecord
   def generate_authentication_token!
     begin
       self.auth_token = Devise.friendly_token
-    end while User.exists?(auth_token: self.auth_token)
+    end while User.exists?(auth_token: auth_token)
   end
 
 end
