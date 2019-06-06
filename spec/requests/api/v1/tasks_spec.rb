@@ -99,7 +99,7 @@ RSpec.describe 'Task API' do
       end
 
       it 'updates the task in the database' do
-        expect(Task.find_by(title: task_params[:title])).not_to be_nil )
+        expect(Task.find_by(title: task_params[:title])).not_to be_nil
       end
     end
   end
